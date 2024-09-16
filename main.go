@@ -20,7 +20,7 @@ func main() {
 
 	app := fiber.New(config)
 
-	app.Get("/", func(ctx *fiber.Ctx) error {
+	app.Get("/api/v1/books", func(ctx *fiber.Ctx) error {
 		return ctx.SendString("hello from fiber")
 	})
 
@@ -28,7 +28,7 @@ func main() {
 	signal.Notify(osSigChan, syscall.SIGINT, syscall.SIGTERM)
 
 	go func() {
-		if err := app.Listen("0.0.0.0:4040"); err != nil {
+		if err := app.Listen("0.0.0.0:5000"); err != nil {
 			log.Logger.Fatal("Failed to listen %v", err)
 		}
 	}()
